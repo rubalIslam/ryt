@@ -85,14 +85,14 @@ export default function AdminLogin({ setAdminId, setAdminToken }) {
                         value={password}
                     />
                     <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-                        <Text style={styles.buttonText}> Se connecter</Text>
+                        <Text style={styles.buttonText}>AdminLogin</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         onPress={() => {
                             navigation.navigate("SignUp");
                         }}
                     >
-                        <Text style={styles.underButton}>Pas de compte ? S'inscrire</Text>
+                        <Text style={styles.underButton}>Go back to Login as user</Text>
                     </TouchableOpacity>
                 </View>
             </SafeAreaView>
