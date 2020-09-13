@@ -66,7 +66,7 @@ class FirebaseUploader extends Component {
 
     }
 
-    uploadToFirebase = (blob) => {
+    uploadToFirebase = (blob, filename) => {
 
         return new Promise((resolve, reject) => {
 
@@ -87,7 +87,7 @@ class FirebaseUploader extends Component {
                     .then(url => {
                         this.setState({ fileURL: url })
                     })
-
+                console.log(filename);
                 this.props.filename(filename)
 
                 blob.close();
@@ -110,17 +110,18 @@ class FirebaseUploader extends Component {
         ImagePicker.launchImageLibraryAsync({
             mediaTypes: "Images"
         }).then((result) => {
-
+            console.log("result"+result);
             if (!result.cancelled) {
                 // User picked an image
                 const { height, width, type, uri } = result;
-                return uriToBlob(uri);
+                console.log("uri"+uri);
+                return this.uriToBlob(uri);
 
             }
 
         }).then((blob) => {
 
-            return uploadToFirebase(blob);
+            return this.uploadToFirebase(blob);
 
         }).then((snapshot) => {
 
@@ -147,11 +148,11 @@ class FirebaseUploader extends Component {
         return (
             <View>
                 <Text>uploader</Text>
-                {console.log(this.state.fileURL)}
+                {console.log("file url"+this.state.fileURL)}
                 {   !this.state.fileURL ?
                     <View>
                         <Text>Select your Image</Text>
-                        {console.log(this.props)}
+                        {console.log("props"+this.props)}
                         <Button
                             style={{ width: 100, height: 30 }}
                             title="UPLOAD"

@@ -134,7 +134,7 @@ class EditEngineers extends Component {
                 .once("value")
                 .then((snapshot) => {
                     const engineerData = snapshot.val();
-                    console.log(engineerData);
+                    //console.log(engineerData);
 
                     firebase
                         .storage()
@@ -183,7 +183,7 @@ class EditEngineers extends Component {
       
         newFormdata[name] = newElement;
       
-        console.log(newFormdata);
+        //console.log(newFormdata);
         this.setState({
             formError: false,
             formdata: newFormdata
@@ -246,6 +246,7 @@ class EditEngineers extends Component {
         const newFormdata = { ...this.state.formdata };
         newFormdata["image"].value = "";
         newFormdata["image"].valid = false;
+        //console.log("deleting file");
 
         this.setState({
             defaultImg: "",

@@ -38,12 +38,15 @@ export default function ProfileScreen({ setToken, setId }) {
 
   return (
     <View>
-      <Text>
-        <Button title="sign out" onPress={handleSubmit}
-        >
-
-        </Button>
-      </Text>
+      {/*<Button title="sign out" onPress={handleSubmit}
+        />*/}
+      <TouchableOpacity
+        style={styles.button}
+        onPress={handleSubmit}
+      >
+        <Text style={{ color: "white" }}>Sign out</Text>
+      </TouchableOpacity>
+      
     </View>
   );
 }
@@ -54,6 +57,17 @@ const styles = StyleSheet.create({
     alignItems: "center"
     // flex: 1
   },
+  button: {
+    width: 390,
+    height: 45,
+    margin: 0,
+    padding: 0,
+    borderRadius: 5,
+    backgroundColor: "tomato",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 50
+},
   image: {
     height: 140,
     width: 140,
