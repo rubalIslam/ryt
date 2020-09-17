@@ -4,6 +4,7 @@ import { useNavigation, useRoute } from "@react-navigation/core";
 import { firebasePlayers,firebase, firebaseEngineers, firebaseDB } from '../components/Firebase/firebase';
 import FirebaseUploader from "../components/ui/FirebaseUploader";
 import ImageUploader from "../components/ui/ImageUploader";
+import { ScrollView } from "react-native-gesture-handler";
 
 export default function (props) {
     const route = useRoute();
@@ -264,13 +265,14 @@ class EditEngineers extends Component {
         const { route } = this.props;
         this.state.propsId = route.params.engineerId;
         return (
-            <View>
+            <ScrollView>
+                <View style={this.styles.containers}>
                 <Text>
                     Edit Engineers
                 </Text>
-                <ImageUploader
+                {/*<ImageUploader
 
-                />
+                />*/}
                 <FirebaseUploader
                     dir = "engineers"
                     tag = {"Engineers image"}
@@ -359,11 +361,58 @@ class EditEngineers extends Component {
                 />
                 <TouchableOpacity
                     onPress={(event) => this.submitForm(event)}
+                    style={this.styles.button}
                 >
                     <Text style={{ color: "white" }}>Save</Text>
                 </TouchableOpacity>
-            </View>
+                </View>
+            </ScrollView>
         )
     }
+    styles = {
+        containers:{
+            backgroundColor: "#F35960",
+        },
+        container: {
+            flex: 1,
+            backgroundColor: "#F35960",
+            alignItems: "center",
+            justifyContent: "center"
+        },
+        button: {
+            width: 390,
+            height: 45,
+            margin: 0,
+            padding: 0,
+            borderRadius: 5,
+            backgroundColor: "tomato",
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: 50
+        },
+        buttonText: {
+            color: "#F35960",
+            fontSize: 24
+        },
+        underButton: {
+            marginTop: 15,
+            color: "white",
+            textDecorationLine: "underline"
+        },
+        textInput: {
+            borderBottomColor: "white",
+            borderBottomWidth: 1,
+            width: 330,
+            height: 45,
+            marginBottom: 30,
+            color: "white"
+        },
+        form: {
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: 50
+        }
+    }
+
 }
 //export default EditEngineers;

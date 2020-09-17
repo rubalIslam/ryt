@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet,Dimensions } from 'react-native';
 //import { ImagePicker } from 'expo';
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
@@ -7,7 +7,8 @@ import * as ImagePicker from 'expo-image-picker';
 import * as firebase from 'firebase/app';
 import 'firebase/storage';
 import { Button, Image, TouchableOpacity } from 'react-native';
-
+//var width = Dimensions.get("window").width;
+//var height = Dimensions.get("window").height;
 //
 // Don't forget to initialize firebase!!!
 //
@@ -160,8 +161,7 @@ class FirebaseUploader extends Component {
 
     render() {
         return (
-            <View>
-                <Text>uploader</Text>
+            <View style={this.styles.container}>
                 {console.log("file url"+this.state.fileURL)}
                 {   !this.state.fileURL ?
                     <View>
@@ -183,10 +183,10 @@ class FirebaseUploader extends Component {
                 {
                     this.state.fileURL ?
                         <View>
-                            <Image style={{ width: 200, height: 200 }} source={{ uri: this.state.fileURL }} />
+                            <Image style={this.styles.engineerImage} source={{ uri: this.state.fileURL }} />
                             <TouchableOpacity
-                                style={{width:100, height:30}}
                                 onPress={() => this.uploadAgain()}
+                                style={{textAlign: "right", paddingRight: 20}}
                             >
                                 <Text style={{ color: "white" }}>Remove</Text>
                             </TouchableOpacity>
@@ -195,6 +195,19 @@ class FirebaseUploader extends Component {
                 }
             </View>
         );
+    }
+
+    styles = {
+        container: {
+            flex: 1,
+            backgroundColor: "#F35960",
+            alignItems: "center",
+            justifyContent: "center"
+        },
+        engineerImage: {
+            width: Dimensions.get('window').width,
+            height: Dimensions.get('window').width
+        }
     }
 
 
