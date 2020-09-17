@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/core";
 import { firebasePlayers,firebase, firebaseEngineers, firebaseDB } from '../components/Firebase/firebase';
 import FirebaseUploader from "../components/ui/FirebaseUploader";
+import ImageUploader from "../components/ui/ImageUploader";
 
 export default function (props) {
     const route = useRoute();
@@ -255,7 +256,8 @@ class EditEngineers extends Component {
     };
 
     storeFilename = (filename) => {
-        this.updateForm({ id: "image" }, filename);
+        //this.updateForm({ id: "image" }, filename);
+        this.updateForm("image", filename);
     };
 
     render() {
@@ -266,6 +268,9 @@ class EditEngineers extends Component {
                 <Text>
                     Edit Engineers
                 </Text>
+                <ImageUploader
+
+                />
                 <FirebaseUploader
                     dir = "engineers"
                     tag = {"Engineers image"}

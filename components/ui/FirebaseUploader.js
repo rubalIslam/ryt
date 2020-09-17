@@ -68,9 +68,11 @@ class FirebaseUploader extends Component {
 
     uploadToFirebase = (blob, filename) => {
 
+        console.log(this.props.dir+" : "+this.props.dir.type);
         return new Promise((resolve, reject) => {
 
-            var storageRef = firebase.storage().ref(this.props.dir);
+            
+            var storageRef = firebase.storage().ref().child("engineers/"+filename);
 
             //var storageRef = firebase.storage().ref();
 
@@ -90,9 +92,9 @@ class FirebaseUploader extends Component {
                 console.log(filename);
                 this.props.filename(filename)
 
-                blob.close();
+                //blob.close();
 
-                resolve(snapshot);
+                //resolve(snapshot);
 
             }).catch((error) => {
                 reject(error);
@@ -105,7 +107,19 @@ class FirebaseUploader extends Component {
     }
 
 
+    nameGenerator(length) {
+        var result           = '';
+        var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for ( var i = 0; i < length; i++ ) {
+           result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+     }
+
     handleOnPress = () => {
+
+        const name = this.nameGenerator(10);
 
         ImagePicker.launchImageLibraryAsync({
             mediaTypes: "Images"
@@ -121,7 +135,7 @@ class FirebaseUploader extends Component {
 
         }).then((blob) => {
 
-            return this.uploadToFirebase(blob);
+            return this.uploadToFirebase(blob, name);
 
         }).then((snapshot) => {
 
