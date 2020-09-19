@@ -40,7 +40,7 @@ export default function SignInScreen({ setToken, setId }) {
                 })
               })
             })
-            console.log("hi");
+            console.log("signinSuccessful");
      /* const response = await axios.post(
         "https://express-airbnb-api.herokuapp.com/user/log_in",
         { email: email, password: password }
@@ -81,7 +81,7 @@ export default function SignInScreen({ setToken, setId }) {
             value={password}
           />
           <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-            <Text style={styles.buttonText}> Se connecter</Text>
+            <Text style={styles.buttonText}>Login</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {

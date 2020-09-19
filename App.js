@@ -15,6 +15,9 @@ import Room from "./containers/Room";
 import Dashboard from "./containers/Dashboard";
 import Engineers from "./containers/Engineers";
 import EditEngineers from "./containers/EditEngineers";
+import Gallery from "./containers/Gallery";
+import GalleryCard from "./containers/GalleryCard";
+
 import { ActionSheetProvider } from "@expo/react-native-action-sheet";
 
 const Tab = createBottomTabNavigator();
@@ -24,6 +27,7 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [userToken, setUserToken] = useState(null);
   const [userId, setUserId] = useState(null);
+  console.log("user id: "+userId);
 
   const [adminToken, setadminToken] = useState(null);
   const [adminId, setadminId] = useState(null);
@@ -243,6 +247,53 @@ export default function App() {
                         </Stack.Navigator>
                       )}
                     </Tab.Screen>
+                    <Tab.Screen
+                      name="Gallery"
+                      options={{
+                        tabBarLabel: "Gallery",
+                        tabBarIcon: ({ color, size }) => (
+                          <Ionicons name={"gallery"} size={size} color={color} />
+                        )
+                      }}
+                    >
+                      {() => (
+                        <Stack.Navigator>
+                          <Stack.Screen
+                            name="Gallery"
+                            options={{
+                              title: "List",
+                              tabBarLabel: "Gallery",
+                              headerStyle: { backgroundColor: "#F1485C" },
+                              headerTitleStyle: { color: "white" },
+                              headerTitleAlign: "center"
+                            }}
+                          >
+                            {() => <Gallery />}
+                          </Stack.Screen>
+                          <Stack.Screen
+                            name="GalleryCard"
+                            options={{
+                              headerBackTitleVisible: false,
+                              headerBackImage: () => (
+                                <Ionicons
+                                  style={{ marginLeft: 20 }}
+                                  name={"ios-arrow-back"}
+                                  size={30}
+                                  color={"white"}
+                                />
+                              ),
+                              title: "GalleryCard",
+                              headerStyle: { backgroundColor: "#F1485C" },
+                              headerTitleStyle: { color: "white" },
+                              headerTitleAlign: "center"
+                            }}
+                          >
+                            {() => <GalleryCard userId={userId} userToken={userToken}/>}
+                          </Stack.Screen>
+                        </Stack.Navigator>
+                      )}
+                    </Tab.Screen>
+                    
                     <Tab.Screen
                       name="Around Me"
                       options={{

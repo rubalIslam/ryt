@@ -7,9 +7,10 @@ import ImageUploader from "../components/ui/ImageUploader";
 import { ScrollView } from "react-native-gesture-handler";
 
 export default function (props) {
+    const navigation = useNavigation();
     const route = useRoute();
 
-    return <EditEngineers {...props} route={route} />;
+    return <EditEngineers {...props} route={route} navigation={navigation} />;
 }
 
 class EditEngineers extends Component {
@@ -203,7 +204,7 @@ class EditEngineers extends Component {
         }, 2000);
     };
 
-    submitForm(event) {
+    submitForm(event, navigation) {
         event.preventDefault();
 
         let dataToSubmit = {};
@@ -221,6 +222,8 @@ class EditEngineers extends Component {
                     .update(dataToSubmit)
                     .then(() => {
                         this.successForm("Engineers added");
+                        alert("Engineers added");
+                        navigation.navigate("Dashboard");
                     })
                     .catch((e) => {
                         this.setState({ formError: true });
@@ -263,6 +266,7 @@ class EditEngineers extends Component {
 
     render() {
         const { route } = this.props;
+        const { navigation } = this.props;
         this.state.propsId = route.params.engineerId;
         return (
             <ScrollView>
@@ -360,7 +364,7 @@ class EditEngineers extends Component {
                 //onChange={(event) => this.updateForm({ event, id: "name" })}
                 />
                 <TouchableOpacity
-                    onPress={(event) => this.submitForm(event)}
+                    onPress={(event) => this.submitForm(event, navigation)}
                     style={this.styles.button}
                 >
                     <Text style={{ color: "white" }}>Save</Text>
