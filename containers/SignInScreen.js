@@ -12,9 +12,9 @@ import {
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import axios from "axios";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { firebase,firebaseLoggedInDetail } from "../components/Firebase/firebase";
+import { firebase,firebaseLoggedInDetail,firebaseUsers } from "../components/Firebase/firebase";
 
-export default function SignInScreen({ setToken, setId }) {
+export default function SignInScreen({ setToken, setId, setName }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -32,15 +32,32 @@ export default function SignInScreen({ setToken, setId }) {
             ).then(()=>{
               firebase.auth().onAuthStateChanged((user) => {
                 setToken(user.uid);
-                console.log(user);
+                //console.log("user:"+user);
                 setId(user.email);
                 userMail = user.email;
+                //console.log(user.email);
+                firebaseUsers.orderByChild("email").equalTo(userMail).on("value",(snapshot)=>{
+                  console.log(snapshot.val());
+                  snapshot.forEach((child)=>{
+                    console.log(child.val().name);
+                    setName(child.val().name);
+                  })
+                })
+                
+                /*
+                firebaseUsers.orderByChild("email").equalTo("bedarul@gmail.com").on("value").then((snapshot)=>{
+                  console.log(snapshot);
+                }).catch(e){
+                  console.log(e);
+                }
+                })*/
+
                 firebaseLoggedInDetail.push({ userMail, dateTime }).then(() => {
-                  console.log("userLooggged in at" + dateTime);
+                  //console.log("userLooggged in at" + dateTime);
                 })
               })
             })
-            console.log("signinSuccessful");
+            //console.log("signinSuccessful");
      /* const response = await axios.post(
         "https://express-airbnb-api.herokuapp.com/user/log_in",
         { email: email, password: password }

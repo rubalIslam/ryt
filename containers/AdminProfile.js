@@ -21,16 +21,15 @@ import * as Permissions from "expo-permissions"; // pour obtenir permission
 import { ScrollView } from "react-native-gesture-handler";
 import { firebase } from "../components/Firebase/firebase";
 
-export default function ProfileScreen({ setToken, setId, setName }) {
+export default function AdminProfile({ setadminToken, setAdminId }) {
   const navigation = useNavigation();
 
   const handleSubmit = async () => {
     firebase.auth().signOut().then(function() {
       // Sign-out successful.
       //navigation.navigate("SignIn");
-      setToken(null);
-      setId(null);
-      setName(null);
+      setadminToken(null);
+      setAdminId(null);
     }, function(error) {
       // An error happened.
       alert("You are not logged in or you cannot logout right now. Please try after some time!")
@@ -45,7 +44,7 @@ export default function ProfileScreen({ setToken, setId, setName }) {
         style={styles.button}
         onPress={handleSubmit}
       >
-        <Text style={{ color: "white" }}>Sign out</Text>
+        <Text style={{ color: "white" }}>Admin SignOut</Text>
       </TouchableOpacity>
       
     </View>

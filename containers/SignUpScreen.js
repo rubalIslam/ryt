@@ -120,7 +120,7 @@ export default function SingUpScreen({ setToken, setId }) {
               onChangeText={text => setConfirmPassword(text)}
             />
             <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-              <Text style={styles.buttonText}> S'inscrire</Text>
+              <Text style={styles.buttonText}> Register</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -128,7 +128,7 @@ export default function SingUpScreen({ setToken, setId }) {
               }}
             >
               <Text style={styles.underButton}>
-                Déjà un compte ? Se connecter
+                Already have an account, SignIn
               </Text>
             </TouchableOpacity>
           </View>

@@ -10,6 +10,7 @@ import { Promise } from "core-js";
 export default function (props) {
     const navigation = useNavigation();
     const route = useRoute();
+    //console.log("Gallery card:"+props.name);
 
     return <GalleryCard {...props} route={route} navigation={navigation} />;
 }
@@ -39,7 +40,7 @@ class GalleryCard extends Component {
     };
 
     componentDidMount() {
-        //sconsole.log("Gallery: " + this.props);
+        console.log("Gallery: " + this.props);
         firebaseGallery.once("value").then((snapshot) => {
             const gallerys = firebaseLooper(snapshot);
             let promises = [];
@@ -69,8 +70,32 @@ class GalleryCard extends Component {
             });
         });
     }
+    constructor(props) {
+       /* super(props)
+        this.state = {
+            lastRefresh: Date(Date.now()).toString(),
+        }
+        this.refreshScreen = this.refreshScreen.bind(this)
+        */
+       super();
+        this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
+    }
 
-    sendComment(event, route, navigation) {
+    forceUpdateHandler() {
+       // this.setState({ lastRefresh: Date(Date.now()).toString() })
+       this.forceUpdate();
+    }
+
+    state = {
+        uniqueValue: 1
+    }
+
+    forceRemount (){
+        this.setState({
+          uniqueValue: uniqueValue + 1
+        })
+    }
+    sendComment(event, route, navigation, username) {
         event.preventDefault();
 
         let dataToSubmit = {};
@@ -83,8 +108,8 @@ class GalleryCard extends Component {
         for (let key in this.state.formdata) {
            // dataToSubmit[key] = this.state.formdata[key].value;
            commentData.message = this.state.formdata[key].value;
-           commentData.name = "rubal"; 
-            console.log(dataToSubmit[key]);
+           commentData.name = username; 
+            //console.log(dataToSubmit[key]);
             formIsValid =
                 this.state.formdata[key].valid && formIsValid;
         }
@@ -92,8 +117,9 @@ class GalleryCard extends Component {
         if (formIsValid) {
             //console.log(dataToSubmit);
             firebase.database().ref("gallery/"+route.params.id+"/comments").push(commentData).then(()=>{
-                console.log("datatosubmit" + commentData);
-                window.location.reload(false);
+                //console.log("datatosubmit" + commentData);
+                //window.location.reload(false);
+                this.forceRemount
             }).catch(e=>{
                 this.setState({
                     formError: true
@@ -139,7 +165,7 @@ class GalleryCard extends Component {
 
         newFormdata[name] = newElement;
 
-        console.log("newFormdata: "+newFormdata);
+        //console.log("newFormdata: "+newFormdata);
         this.setState({
             formError: false,
             formdata: newFormdata
@@ -170,7 +196,7 @@ class GalleryCard extends Component {
                     <Text>{route.params.gallery.details}</Text>
 
                     <Text>Comments</Text>
-                    {console.log(route.params.gallery)}
+                    {/*console.log(route.params.gallery)*/}
                     {/*
                         this.state.comments?
                         Object.keys(this.state.comments).map((comment,i) => (
@@ -199,16 +225,16 @@ class GalleryCard extends Component {
                         id="name"
                         name="name"
                         //value = {this.state.formdata.name.value}
-                        placeholder="Enter your name"
+                        placeholder="Enter your comment"
                         onChangeText={(value) => this.updateForm("name", value)}
                     /*onChange={(event) => this.updateForm({ event, id: "name" })}*/
                     />
 
-                    <TouchableOpacity style={this.styles.commentButton} onPress={(event) => this.sendComment(event,route, navigation)}>
+                    <TouchableOpacity style={this.styles.commentButton} onPress={(event) => this.sendComment(event,route, navigation, this.props.name)}>
                         <Text>Send</Text>
                     </TouchableOpacity>
 
-                    {console.log("props: "+this.props)}
+                    {console.log("props: "+this.props.name)}
 
                 </View>
             </ScrollView>

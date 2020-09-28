@@ -9,13 +9,22 @@ import {
   TouchableWithoutFeedback
 } from "react-native-gesture-handler";
 
-export default function HomeScreen() {
+import { firebase,firebaseLoggedInDetail,firebaseUsers } from "../components/Firebase/firebase";
+
+export default function HomeScreen({name}) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigation = useNavigation();
 
+  console.log("name: home: "+name);
+
   useEffect(() => {
     const fetchData = async () => {
+      /*
+      firebaseUsers.orderByChild("email").equalTo("bedarul@gmail.com").once("value").then((snapshot) => {
+        console.log("snapshot:"+snapshot.val());
+      })*/
+
       const response = await axios.get(
         "https://airbnb-api.herokuapp.com/api/room?city=paris"
       );

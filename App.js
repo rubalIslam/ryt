@@ -17,6 +17,7 @@ import Engineers from "./containers/Engineers";
 import EditEngineers from "./containers/EditEngineers";
 import Gallery from "./containers/Gallery";
 import GalleryCard from "./containers/GalleryCard";
+import AdminProfile from "./containers/AdminProfile";
 
 import { ActionSheetProvider } from "@expo/react-native-action-sheet";
 
@@ -27,13 +28,22 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [userToken, setUserToken] = useState(null);
   const [userId, setUserId] = useState(null);
-  console.log("user id: "+userId);
+  const [name, setname] = useState(null);
+  console.log("user name: "+name);
 
   const [adminToken, setadminToken] = useState(null);
   const [adminId, setadminId] = useState(null);
 
   // AsyncStorage.removeItem("userToken");
   // AsyncStorage.removeItem("userId");
+  const setName = async name => {
+    if(name){
+      AsyncStorage.setItem("name",name);
+    }else{
+      AsyncStorage.removeItem("name");
+    }
+    setname(name);
+  }
 
   const setAdminToken = async token => {
     if (token) {
@@ -77,12 +87,18 @@ export default function App() {
       // We should also handle error for production apps
       const userToken = await AsyncStorage.getItem("userToken");
       const adminToken = await AsyncStorage.getItem("adminToken");
+      const userId = await AsyncStorage.getItem("userId");
+      const adminId = await AsyncStorage.getItem("adminId");
+      const name = await AsyncStorage.getItem("name");
 
       // This will switch to the App screen or Auth screen and this loading
       // screen will be unmounted and thrown away.
       setIsLoading(false);
       setUserToken(userToken);
       setadminToken(adminToken);
+      setName(name);
+      setUserId(userId);
+      setadminId(adminId);
     };
 
     bootstrapAsync();
@@ -111,7 +127,7 @@ export default function App() {
               name="SignIn"
               options={{ header: () => null, animationEnabled: false }}
             >
-              {() => <SignInScreen setId={setId} setToken={setToken} />}
+              {() => <SignInScreen setId={setId} setToken={setToken} setName={setName}/>}
             </Stack.Screen>
             <Stack.Screen
               name="AdminLogin"
@@ -166,7 +182,7 @@ export default function App() {
                                 name="AdminProfile"
                                 options={{ header: () => null, animationEnabled: false }}
                               >
-                                {() => <Dashboard />}
+                                {() => <AdminProfile setAdminId={setadminId} setadminToken={setadminToken}/>}
                               </Stack.Screen>
                               <Stack.Screen
                                 name="Room"
@@ -222,7 +238,7 @@ export default function App() {
                               headerTitleAlign: "center"
                             }}
                           >
-                            {() => <HomeScreen />}
+                            {() => <HomeScreen userId={userId} userToken={userToken} name={name}/>}
                           </Stack.Screen>
                           <Stack.Screen
                             name="Room"
@@ -288,7 +304,7 @@ export default function App() {
                               headerTitleAlign: "center"
                             }}
                           >
-                            {() => <GalleryCard userId={userId} userToken={userToken}/>}
+                            {() => <GalleryCard userId={userId} userToken={userToken} name={name}/>}
                           </Stack.Screen>
                         </Stack.Navigator>
                       )}
@@ -344,7 +360,7 @@ export default function App() {
                             }}
                           >
                             {() => (
-                              <ProfileScreen setId={setId} setToken={setToken} />
+                              <ProfileScreen setId={setId} setToken={setToken} setName={setname}/>
                             )}
                           </Stack.Screen>
                         </Stack.Navigator>
