@@ -24,6 +24,14 @@ class Dashboard extends Component {
                 >
                     <Text style={{ color: "white" }}>Engineers</Text>
                 </TouchableOpacity>
+                <TouchableOpacity
+                    style={this.styles.button}
+                    onPress={() => {
+                        navigation.navigate("YoutubeDownloader");
+                    }}
+                >
+                    <Text style={{ color: "white" }}>YoutubeDownloader</Text>
+                </TouchableOpacity>
             </View>
         );
     }

@@ -74,23 +74,23 @@ export default function SingUpScreen({ setToken, setId }) {
       <KeyboardAwareScrollView extraScrollHeight={110}>
         <SafeAreaView>
           <View style={styles.inner}>
-            <Text style={styles.title}>Rejoignez-nous !</Text>
+            <Text style={styles.title}>If you dont have account, Please Register Here</Text>
             <TextInput
               autoCapitalize="none"
               style={styles.textInput}
-              placeholder="email"
+              placeholder="Email"
               placeholderTextColor="#E1E1E1"
               onChangeText={text => setEmail(text)}
             />
             <TextInput
               style={styles.textInput}
-              placeholder="username"
+              placeholder="Username"
               placeholderTextColor="#E1E1E1"
               onChangeText={text => setUsername(text)}
             />
             <TextInput
               style={styles.textInput}
-              placeholder="name"
+              placeholder="Name"
               placeholderTextColor="#E1E1E1"
               onChangeText={text => setName(text)}
             />
@@ -99,14 +99,14 @@ export default function SingUpScreen({ setToken, setId }) {
               numberOfLines={8}
               maxLength={200}
               style={styles.textArea}
-              placeholder="description (max. 200 characters"
+              placeholder="Description (Only 200 characters)"
               placeholderTextColor="#E1E1E1"
               onChangeText={text => setDescription(text)}
             />
             <TextInput
               autoCapitalize="none"
               style={styles.textInput}
-              placeholder="password"
+              placeholder="Password"
               placeholderTextColor="#E1E1E1"
               secureTextEntry={true}
               onChangeText={text => setPassword(text)}
@@ -114,7 +114,7 @@ export default function SingUpScreen({ setToken, setId }) {
             <TextInput
               autoCapitalize="none"
               style={styles.textInput}
-              placeholder="confirm password"
+              placeholder="Confirm password"
               placeholderTextColor="#E1E1E1"
               secureTextEntry={true}
               onChangeText={text => setConfirmPassword(text)}
@@ -141,7 +141,7 @@ export default function SingUpScreen({ setToken, setId }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F35960",
+    backgroundColor: "black",
     alignItems: "center",
     justifyContent: "center"
   },
@@ -151,6 +151,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   title: {
+    textAlign:"center",
     fontSize: 24,
     color: "white",
     marginVertical: 20
@@ -159,13 +160,13 @@ const styles = StyleSheet.create({
     width: 190,
     height: 65,
     borderRadius: 50,
-    backgroundColor: "white",
+    backgroundColor: "tomato",
     justifyContent: "center",
     alignItems: "center",
     marginTop: 50
   },
   buttonText: {
-    color: "#F35960",
+    color: "white",
     fontSize: 24
   },
   underButton: {

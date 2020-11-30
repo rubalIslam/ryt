@@ -65,7 +65,8 @@ export default function AdminLogin({ setAdminId, setAdminToken }) {
             contentContainerStyle={styles.container}
         >
             <SafeAreaView style={{ alignItems: "center" }}>
-                <MaterialCommunityIcons name="home-outline" size={150} color="white" />
+                <Text style={styles.loginText}>If You Are Admin, Please Login</Text>
+                <Text style={styles.loginText}>Else Login as User</Text>
                 <View style={styles.form}>
                     <TextInput
                         autoCapitalize="none"
@@ -103,21 +104,27 @@ export default function AdminLogin({ setAdminId, setAdminToken }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#F35960",
+        backgroundColor: "black",
         alignItems: "center",
         justifyContent: "center"
     },
+    loginText:{
+        textAlign:"center",
+        color:"white",
+        fontSize:40,
+        fontWeight:"bold"
+      },
     button: {
         width: 190,
         height: 65,
         borderRadius: 50,
-        backgroundColor: "white",
+        backgroundColor: "tomato",
         justifyContent: "center",
         alignItems: "center",
         marginTop: 50
     },
     buttonText: {
-        color: "#F35960",
+        color: "white",
         fontSize: 24
     },
     underButton: {

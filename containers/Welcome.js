@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
     StyleSheet,
     Button,
+    Image,
     Platform,
     SafeAreaView
 } from "react-native";
@@ -18,8 +19,16 @@ export default function Welcome({ setToken, setId }) {
 
     return (
         <View style={styles.container}>
-            <Text>
-                Welcome
+            {/*<Image
+                style={styles.logo}
+                source={require('../assets/yt.png')}
+            />*/}
+            <Text style={styles.yt}>
+                Rubal YT Downloader
+            </Text>
+            <Text style={styles.ytheading}>
+                Simple and Ad-Free Youtube Downloader
+                Only for the loved ones!
             </Text>
             <TouchableOpacity
                 style={styles.button}
@@ -54,17 +63,36 @@ export default function Welcome({ setToken, setId }) {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: "#F35960",
+      backgroundColor: "black",
       alignItems: "center",
       justifyContent: "center"
     },
+    yt:{
+        color: "red",
+        fontSize: 40,
+        fontWeight: "bold",
+        marginTop:0
+    },
+    ytheading: {
+        textAlign:"center",
+        color:"white",
+        fontSize:20
+    },
+    logo: {
+        flex: 1,
+        width: 200,
+        height: 50,
+        resizeMode: 'contain',
+        padding: 0,
+        margin: 0
+    },  
     button: {
       width: 390,
       height: 45,
       margin: 0,
       padding: 0,
       borderRadius: 5,
-      backgroundColor: "#263238",
+      backgroundColor: "tomato",
       justifyContent: "center",
       alignItems: "center",
       marginTop: 50

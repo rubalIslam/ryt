@@ -18,8 +18,10 @@ import EditEngineers from "./containers/EditEngineers";
 import Gallery from "./containers/Gallery";
 import GalleryCard from "./containers/GalleryCard";
 import AdminProfile from "./containers/AdminProfile";
+import YoutubeDownloader from "./containers/YoutubeDownloader";
 
 import { ActionSheetProvider } from "@expo/react-native-action-sheet";
+import FfmpegConverter from "./containers/ffmpegConverter";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -158,6 +160,12 @@ export default function App() {
                                 {() => <Dashboard />}
                               </Stack.Screen>
                               <Stack.Screen
+                                name="YoutubeDownloader"
+                                options={{ header: () => null, animationEnabled: false }}
+                              >
+                                {() => <YoutubeDownloader />}
+                              </Stack.Screen>
+                              <Stack.Screen
                                 name="Engineers"
                                 options={{ header: () => null, animationEnabled: false }}
                               >
@@ -218,9 +226,9 @@ export default function App() {
                     }}
                   >
                     <Tab.Screen
-                      name="Home"
+                      name="YoutubeDownloader"
                       options={{
-                        tabBarLabel: "Home",
+                        tabBarLabel: "YoutubeDownloader",
                         tabBarIcon: ({ color, size }) => (
                           <Ionicons name={"home"} size={size} color={color} />
                         )
@@ -228,6 +236,18 @@ export default function App() {
                     >
                       {() => (
                         <Stack.Navigator>
+                          <Stack.Screen
+                                name="FfmpegConverter"
+                                options={{ header: () => null, animationEnabled: false }}
+                              >
+                                {() => <FfmpegConverter />}
+                          </Stack.Screen>
+                          <Stack.Screen
+                                name="YoutubeDownloader"
+                                options={{ header: () => null, animationEnabled: false }}
+                              >
+                                {() => <YoutubeDownloader />}
+                          </Stack.Screen>
                           <Stack.Screen
                             name="Home"
                             options={{
@@ -240,6 +260,7 @@ export default function App() {
                           >
                             {() => <HomeScreen userId={userId} userToken={userToken} name={name}/>}
                           </Stack.Screen>
+                          {/*
                           <Stack.Screen
                             name="Room"
                             options={{
@@ -259,10 +280,11 @@ export default function App() {
                             }}
                           >
                             {() => <Room />}
-                          </Stack.Screen>
+                          </Stack.Screen>*/}
                         </Stack.Navigator>
                       )}
                     </Tab.Screen>
+                    {/*
                     <Tab.Screen
                       name="Gallery"
                       options={{
@@ -334,7 +356,7 @@ export default function App() {
                           </Stack.Screen>
                         </Stack.Navigator>
                       )}
-                    </Tab.Screen>
+                          </Tab.Screen>*/}
                     <Tab.Screen
                       name="Profile"
                       options={{
