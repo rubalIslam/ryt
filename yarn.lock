@@ -5163,10 +5163,10 @@ react-native-web@~0.11.7:
     prop-types "^15.6.0"
     react-timer-mixin "^0.13.4"
 
-react-native-ytdl@^4.0.4:
-  version "4.0.4"
-  resolved "https://registry.yarnpkg.com/react-native-ytdl/-/react-native-ytdl-4.0.4.tgz#fd4f9a81ac8be67d5971d2bc4ae89cb218a302e9"
-  integrity sha512-arQzgJtCHkUgexZPSHHcveDSF+J7J/2XS+MxiXBLeHBhLP4AfPnGImH/x7XkX9z3dX9um0dGY6d131aQybPWwg==
+react-native-ytdl@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-ytdl/-/react-native-ytdl-4.1.2.tgz#1622669748ff495fbd7e869e2f599cd3282bf681"
+  integrity sha512-iUTUeoHMm78Gw12oys42LIPT9kuTIDLOJA+vstS+odaJqyyFyKLV2tbPtDLZa+0qQGuZcNSrFBVk0SEAvyuBPg==
   dependencies:
     querystring "^0.2.0"
     url "~0.10.1"

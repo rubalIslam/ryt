@@ -83,6 +83,7 @@ class FfmpegConverter extends Component {
             console.log("called hd")
             dataFromYoutube = await ytdl(yUrl, { quality: 'highestvideo'})
             //dataFromYoutube = ytdl(yUrl, {quality: 'highestvideo'})
+            console.log(dataFromYoutube)
             if(dataFromYoutube[0].url){
                 this.setState({
                     downloadUrls:dataFromYoutube[0].url
@@ -128,7 +129,10 @@ class FfmpegConverter extends Component {
             }
         }else if(vidQuality == 'mp3') {
             console.log("called mp3")
+            console.log(yUrl)
             dataFromYoutube = await ytdl(yUrl, { filter: 'audioonly'})
+            console.log("dataFromYoutube",dataFromYoutube)
+            console.log("running")
             if(dataFromYoutube[0].url){
                 this.setState({
                     downloadUrls:dataFromYoutube[0].url
@@ -214,14 +218,14 @@ class FfmpegConverter extends Component {
             downloadYoutubeUrl = this.getYoutubeData(yUrl,"mp3")
             //this.func()
             //this.textInput.clear()
-            return
+            //return
             this.setState({
                 youtubeUrl: "",
                 urlValue:""
             })
             //console.log("got:"+downloadYoutubeUrl)
         }
-        return
+        //return
     }
     
 
@@ -268,6 +272,9 @@ class FfmpegConverter extends Component {
                 <TouchableOpacity style={this.styles.button} onPress = {this.handleSubmitSong}>
                     <Text style={this.styles.buttonText}>Download Song</Text>
                 </TouchableOpacity>
+                
+                <Image source={require("../assets/page8.jpg")} style={this.styles.pageImage} />
+                <Text style={{color:"lightgreen"}}>Click on the three dots to download the file.</Text>
                 {/*
                 <TouchableOpacity style={this.styles.button} onPress={this.handleSubmit("hd")}>
                     <Text style={this.styles.buttonText}>Download HD 1080p</Text>
@@ -305,6 +312,15 @@ class FfmpegConverter extends Component {
             margin:0,
             marginTop:3
             
+        },
+        pageImage: {
+            //flex: 1,
+            textAlign:"left",
+            width: 300,
+            height: 150,
+            resizeMode: 'contain',
+            paddingRight: 20,
+            margin: 0
         },
         clearButton:{
             backgroungColor:"rgba(52, 52, 52, 0.8)"

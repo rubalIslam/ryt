@@ -19,6 +19,7 @@ import Gallery from "./containers/Gallery";
 import GalleryCard from "./containers/GalleryCard";
 import AdminProfile from "./containers/AdminProfile";
 import YoutubeDownloader from "./containers/YoutubeDownloader";
+import HowToDownload from "./containers/HowToDownload";
 
 import { ActionSheetProvider } from "@expo/react-native-action-sheet";
 import FfmpegConverter from "./containers/ffmpegConverter";
@@ -242,6 +243,7 @@ export default function App() {
                               >
                                 {() => <FfmpegConverter />}
                           </Stack.Screen>
+                          
                           <Stack.Screen
                                 name="YoutubeDownloader"
                                 options={{ header: () => null, animationEnabled: false }}
@@ -357,6 +359,37 @@ export default function App() {
                         </Stack.Navigator>
                       )}
                           </Tab.Screen>*/}
+                    <Tab.Screen
+                      name="HowToDownload"
+                      options={{
+                        tabBarLabel: "HowToDownload",
+                        tabBarIcon: ({ color, size }) => (
+                          <Ionicons
+                            name={"HowToDownload"}
+                            size={size}
+                            color={color}
+                          />
+                        )
+                      }}
+                    >
+                      {() => (
+                        <Stack.Navigator>
+                          <Stack.Screen
+                            name="HowToDownload"
+                            options={{
+                              title: "HowToDownload",
+                              headerStyle: { backgroundColor: "#F1485C" },
+                              headerTitleStyle: { color: "white" },
+                              headerTitleAlign: "center"
+                            }}
+                          >
+                            {() => (
+                              <HowToDownload setId={setId} setToken={setToken} setName={setname}/>
+                            )}
+                          </Stack.Screen>
+                        </Stack.Navigator>
+                      )}
+                    </Tab.Screen>
                     <Tab.Screen
                       name="Profile"
                       options={{

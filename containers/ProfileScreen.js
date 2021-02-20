@@ -38,7 +38,7 @@ export default function ProfileScreen({ setToken, setId, setName }) {
   }
 
   return (
-    <View>
+    <ScrollView style={{backgroundColor:"black"}}>
       {/*<Button title="sign out" onPress={handleSubmit}
         />*/}
       <TouchableOpacity
@@ -47,8 +47,28 @@ export default function ProfileScreen({ setToken, setId, setName }) {
       >
         <Text style={{ color: "white" }}>Sign out</Text>
       </TouchableOpacity>
-      
-    </View>
+      <Text style={{color: "red", paddingTop:20}}>
+          Terms and Service from Youtube: "You shall not download any content unless you see a 'download' or similar link displayed by YouTube on the Service for that content. You shall not copy, reproduce, distribute, transmit, broadcast, display, sell, license, or otherwise exploit any content for any other purposes without the prior written consent of YouTube or the respective licensors of the content."
+      </Text>
+      <Text style={{color: "tomato", paddingTop:20}}>
+        This is just a project for the educational purpose, Don't use it for commercial purpose.
+      </Text>
+      <Text style={{color: "lightgreen", paddingTop:40}}>
+        Contact the Developer or have a complaint: 
+      </Text>
+      <Text style={{color: "lightgreen", paddingTop:40}}>
+        Bedarul Islam Laskar, Software Engineer, Bangalore, 560068
+      </Text>
+      <Text style={{color: "white", paddingTop:20}}>
+        rubalislamlaskar@gmail.com
+      </Text>
+      <Text style={{color: "white", paddingTop:20}}>
+        github.com/rubalIslam
+      </Text>
+      <Text style={{color: "orange", paddingTop:20}}>
+        OpenSource project, Feel Free to contribute
+      </Text>
+    </ScrollView>
   );
 }
 
